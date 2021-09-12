@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { createStore , combineReducers } from 'redux';
+import { createStore , applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import logger from './Store/middleWare/logger'
-import reducer from './Store/Reducers/index'
+import logger from 'redux-logger';
+import reducer from './Store/Reducers/CompineReducers'
 import { Provider } from 'react-redux';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(reducer , combineReducers(thunk , logger , window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
+const store = createStore(reducer , applyMiddleware(thunk , logger))
 
-ReactDOM.render(<Provider store = {store}><App />
+ReactDOM.render(
+<Provider store = {store}><App />
   </Provider>,
   document.getElementById('root')
 );
