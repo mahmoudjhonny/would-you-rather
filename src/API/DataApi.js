@@ -4,16 +4,16 @@ import {
     _saveQuestion, 
     _saveQuestionAnswer} from './_DATA' ;
 
-    export function getAllData() {
+    export function getInitialData() {
         return Promise.all([_getUsers(), _getQuestions()]).then(
           ([users, questions]) => ({ users, questions })
         );
       }
       
-      export function addQuestion(question) {
+      export function saveQuestion(question) {
         return _saveQuestion(question)
       }
       
-      export function saveAnswer(answer) {
+      export function saveQuestionAnswer(answer) {
         return _saveQuestionAnswer(answer)
       }

@@ -1,11 +1,11 @@
-import { loginUser , logOutUser } from '../Actions/logInAction'
+import { LOGIN, LOGOUT } from '../Actions/authedUser'
 
-const loginReducer = (state = null , action) => {
+const authedUserReducer = (state = null , action) => {
     switch(action.type) {
-        case loginUser: {
-            return action.users
+        case LOGIN: {
+            return action.id
         }
-        case logOutUser: {
+        case LOGOUT: {
             return null
         }
         default: {
@@ -14,4 +14,4 @@ const loginReducer = (state = null , action) => {
     }
 }
 
-export default loginReducer
+export default authedUserReducer

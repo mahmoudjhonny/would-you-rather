@@ -1,4 +1,5 @@
 import React , { Component } from 'react'
+import { Link } from 'react-router-dom'
 
     var colors = {
         "nav-color" : "#e3f2fd"
@@ -17,13 +18,13 @@ class homeHeader extends Component {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <a className="nav-link active" aria-current="page" href="#">Home</a>
+                                <Link to = "/" className="nav-link active" aria-current="page">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">New Poll</a>
+                                <Link to = "/newpoll" className="nav-link">New Poll</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Leader Board</a>
+                                <Link to="/leaderboard" className="nav-link">Leader Board</Link>
                             </li>
                         </ul>
                         <form className="d-flex">

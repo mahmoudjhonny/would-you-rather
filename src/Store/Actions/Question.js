@@ -1,44 +1,28 @@
-import { ADD_NEW_Q , SAVE_Q , RECEIVE_Q } from "./Types";
-import {addQuestion , saveAnswer} from '../../API/DataApi'
+// import { SAVE_Q_ANS , SAVE_Q , RECEIVE_Q } from "./Types";
 
-export const addNewQ = (q) => {
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
+export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
+export const SAVE_QUESTION = 'SAVE_QUESTION';
+
+export const addQuestion = (q) => {
     return {
-        type: ADD_NEW_Q,
+        type: SAVE_QUESTION,
         q
     }
 }
 
-export const saveQ = (user, qid, ans) => {
+export const questionAnswer = (user, qid, ans) => {
     return {
-        type: SAVE_Q,
+        type: SAVE_QUESTION_ANSWER,
         user,
         qid,
         ans
     }
 }
 
-export const receive_Q = (q) => {
+export const receiveQuestions = (q) => {
     return {
-        type: RECEIVE_Q,
+        type: RECEIVE_QUESTIONS,
         q
-    }
-}
-
-export const handleSaveAnsQ = (qid , ans) => {
-    return (dispatch, getState) => {
-        const { user } = getState()
-
-        return saveAnswer({auth: user, qid, ans})
-        .then(() => {
-            dispatch(saveAnswer(user , qid , ans))
-        })
-    }
-}
-
-export const handleAddNewQ = (firstOption , SecondOption) => {
-    return (dispatch , getState) => {
-        const { user } = getState()
-        return addQuestion({firstOption, SecondOption, user:user})
-        .then((q) => dispatch(addNewQ(q)))
     }
 }

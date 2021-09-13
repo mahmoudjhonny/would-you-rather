@@ -1,8 +1,8 @@
 import React , { Component } from 'react'
 import { connect } from 'react-redux'
-import { loginUser , logOutUser } from '../Store/Actions/logInAction'
-import Redirect from 'react-router-dom'
+import { loginUser , logOutUser } from '../Store/Actions/authedUser'
 import LoginHeader from './loginHeader'
+import Footer from './footer'
 
 class LoginComponent extends Component{
 
@@ -11,13 +11,11 @@ class LoginComponent extends Component{
 		toHome: false,
 	}
 	
-	handleSelectionChanged = function(event) {
-		const userId = event.target.value;
-	
-		this.setState(function(previousState) {
+	handleSelectionChanged = (e) => {
+		this.setState((prevState) => {
 		  return {
-			...previousState,
-			userId,
+			...prevState,
+			userId: e.target.value,
 		  };
 		});
 	}
@@ -44,10 +42,11 @@ class LoginComponent extends Component{
 
         const { userId, toHome } = this.state;
 		const { users } = this.props;
-		const selected = userId ? userId : -1
 
+		console.log(this.props)
 
     return (
+		<div>
         <div id="container" className="container border border-primary mt-2 pt-3">
         <div className="row">
             <div className="col-sm-10 offset-sm-1 text-center">
@@ -57,27 +56,27 @@ class LoginComponent extends Component{
                     {() => {document.getElementById('itemSelect').value !== 'default' ?
                      document.getElementById('btn_submit').disabled = false : document.getElementById('btn_submit').disabled = true}}>
                         <div className="form-group">
-                            <select id="itemSelect" className="form-select .w-100" value={selected} onChange={(event) => this.handleSelectionChanged(event)}>
-                            <option value="-1" disabled id="default">Select user...</option>
-						{/* {Object.keys(users).map(function(key) {
+                            <select id="itemSelect" className="form-select .w-100" onChange={(event) => this.handleSelectionChanged(event)}>
+                            <option defaultValue disabled id="default">Select user...</option>
+						{Object.keys(users).map(function(key) {
 							return (
 								<option value={users[key].id} key={key}>
 									{users[key].name}
 								</option>
 							);
-						})} */}
+						})}
                             </select>
                         </div>
                         <br />
                         <div className="d-grid">
-                            <button id="btn_submit" className="btn btn-primary" type="submit" disabled={userId === null}
-					onClick={(event) => this.handleLogin(event)}>Sign in</button>
+                            <button id="btn_submit" className="btn btn-primary" type="submit" onClick={(event) => this.handleLogin(event)}>Sign in</button>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+	</div>
     )}}
 
     function mapStateToProps ({users}) {  
