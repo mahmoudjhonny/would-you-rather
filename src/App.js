@@ -6,7 +6,7 @@ import NotFound from './Components/NotFoundPage'
 import HomePage from './Components/homeBody'
 import Footer from './Components/footer'
 import LeaderBoard from './Components/LeaderBoard'
-// import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 import { handleInitialData } from './Store/Actions/index'
 import { connect } from "react-redux";
 import NewPoll from "./Components/NewPoll";
@@ -30,9 +30,9 @@ class App extends Component{
 							<div className="main-content"> 
 								<Switch>
 									<Route path="/" exact component={Login}/> 
-                  <Route path="/newpoll" exact component={NewPoll} />
-                  <Route path="/leaderboard" component={LeaderBoard} />
-                  <Route path="/home" component={HomePage} />
+                  <ProtectedRoute path="/newpoll" exact component={NewPoll} />
+                  <ProtectedRoute path="/leaderboard" exact component={LeaderBoard} />
+                  <ProtectedRoute path="/home" exact component={HomePage} />
                   <Route path="/*" component={NotFound} />
 								</Switch>
 							</div>
