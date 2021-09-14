@@ -7,11 +7,11 @@ class NewPoll extends Component{
             <h3>Would You Rather</h3>
             <form>
                 <div className="form-group">
-                    <label for="formGroupExampleInput">First Option</label>
+                    <label htmlFor="formGroupExampleInput">First Option</label>
                     <input type="text" className="form-control" id="formGroupExampleInput" placeholder="first Option"/>
                 </div>
                 <div className="form-group">
-                    <label for="formGroupExampleInput2">Second Option</label>
+                    <label htmlFor="formGroupExampleInput2">Second Option</label>
                     <input type="text" className="form-control" id="formGroupExampleInput2" placeholder="second Option"/>
                 </div>
                 <br />

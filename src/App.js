@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Login from './Components/loginComponent'
 import Homeheader from "./Components/homeHeader"
 import NotFound from './Components/NotFoundPage'
-import NewQ from './Components/NewPoll'
+import HomePage from './Components/homeBody'
 import Footer from './Components/footer'
 import LeaderBoard from './Components/LeaderBoard'
 // import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
@@ -30,9 +30,10 @@ class App extends Component{
 							<div className="main-content"> 
 								<Switch>
 									<Route path="/" exact component={Login}/> 
-                  <Route path="/newpoll" component={NewPoll} />
+                  <Route path="/newpoll" exact component={NewPoll} />
                   <Route path="/leaderboard" component={LeaderBoard} />
-                  <Route path="*" component={NotFound} />
+                  <Route path="/home" component={HomePage} />
+                  <Route path="/*" component={NotFound} />
 								</Switch>
 							</div>
         <Footer />

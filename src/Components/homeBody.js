@@ -10,11 +10,11 @@ class homeBody extends Component {
                 <button className="nav-link active" id="v-pills-unansewer-tab" data-bs-toggle="pill" data-bs-target="#v-pills-unansewer" type="button" role="tab" aria-controls="v-pills-unansewer" aria-selected="true">Un Answered</button>
                 <button className="nav-link" id="v-pills-ansewer-tab" data-bs-toggle="pill" data-bs-target="#v-pills-ansewer" type="button" role="tab" aria-controls="v-pills-ansewer" aria-selected="false">Answered </button>
             </div>
-            <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-unansewer" role="tabpanel" aria-labelledby="v-pills-unansewer-tab">
+            <div className="tab-content" id="v-pills-tabContent">
+                <div className="tab-pane fade show active" id="v-pills-unansewer" role="tabpanel" aria-labelledby="v-pills-unansewer-tab">
                     <UnAnsweredQ />
                 </div>
-                <div class="tab-pane fade" id="v-pills-ansewer" role="tabpanel" aria-labelledby="v-pills-ansewer-tab">
+                <div className="tab-pane fade" id="v-pills-ansewer" role="tabpanel" aria-labelledby="v-pills-ansewer-tab">
                     <AnsweredQ />
                 </div>
             </div>

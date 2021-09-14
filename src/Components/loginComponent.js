@@ -1,50 +1,53 @@
 import React , { Component } from 'react'
 import { connect } from 'react-redux'
-import { loginUser , logOutUser } from '../Store/Actions/authedUser'
+import { loginUser } from '../Store/Actions/authedUser'
+import { Redirect, withRouter } from 'react-router-dom'
 import LoginHeader from './loginHeader'
-import Footer from './footer'
 
 class LoginComponent extends Component{
 
     state = {
-		userId: null,
-		toHome: false,
+		Id: null,
+		ToHome: false
 	}
 	
 	handleSelectionChanged = (e) => {
+		const Id = e.target.value
 		this.setState((prevState) => {
 		  return {
 			...prevState,
-			userId: e.target.value,
+			Id,
 		  };
 		});
 	}
+
 	
-	handleLogin = function(event) {
-		const { userId } = this.state;
+	handleLogin = (e) => {
+		const { Id } = this.state;
 		const { dispatch } = this.props;
+
+		e.preventDefault();
 	
-		dispatch(loginUser(userId));
+		dispatch(loginUser(Id));
 	
-		this.setState(function(previousState) {
+		this.setState((prevState) => {
 		  return {
-			...previousState,
-			toHome: true,
+			...prevState,
+			ToHome: true
 		  };
 		});
-	}
-	
-	componentDidMount() {
-		this.props.dispatch(logOutUser())
 	}
 
     render() {
-
-        const { userId, toHome } = this.state;
+		const { Id, ToHome } = this.state
 		const { users } = this.props;
+		const { from } = this.props.location.state || { from: { pathname: '/home'}}
+		const selected = Id ? Id : -1
 
-		console.log(this.props)
-
+		if(ToHome) {
+			return <Redirect to={from} />
+		}
+	
     return (
 		<div>
         <div id="container" className="container border border-primary mt-2 pt-3">
@@ -52,24 +55,26 @@ class LoginComponent extends Component{
             <div className="col-sm-10 offset-sm-1 text-center">
                 <LoginHeader />
                 <div className="info-form .w-100">
-                    <form className="form-inline justify-content-center p-4" onChange = 
-                    {() => {document.getElementById('itemSelect').value !== 'default' ?
-                     document.getElementById('btn_submit').disabled = false : document.getElementById('btn_submit').disabled = true}}>
+                    <form className="form-inline justify-content-center p-4">
                         <div className="form-group">
-                            <select id="itemSelect" className="form-select .w-100" onChange={(event) => this.handleSelectionChanged(event)}>
-                            <option defaultValue disabled id="default">Select user...</option>
-						{Object.keys(users).map(function(key) {
-							return (
-								<option value={users[key].id} key={key}>
-									{users[key].name}
-								</option>
-							);
-						})}
+                            <select id="itemSelect" value={selected} className="form-select .w-100" onChange={(event) => this.handleSelectionChanged(event)}>
+                            <option value="-1" defaultValue>Select user...</option>
+								{Object.keys(users).map((key) => {
+									return (
+										<option value={users[key].id} key={key}>
+											{users[key].name}
+										</option>
+									);
+								})}
                             </select>
                         </div>
                         <br />
                         <div className="d-grid">
-                            <button id="btn_submit" className="btn btn-primary" type="submit" onClick={(event) => this.handleLogin(event)}>Sign in</button>
+                            <button disabled = {Id === null} 
+							id="btn_submit" 
+							className="btn btn-primary" 
+							type="submit" 
+							onClick={(e) => this.handleLogin(e)}>Sign in</button>
                         </div>
                     </form>
                 </div>
@@ -79,10 +84,10 @@ class LoginComponent extends Component{
 	</div>
     )}}
 
-    function mapStateToProps ({users}) {  
+const mapStateToProps = (state) => {  
         return {
-          users,
+          users: state.users
         };
       }
 
-export default connect(mapStateToProps)(LoginComponent)
+export default withRouter(connect(mapStateToProps)(LoginComponent))
