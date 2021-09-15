@@ -14,25 +14,25 @@ export function handleInitialData () {
 
 export function handleAnswer (qid, answer) {
   return (dispatch, getState) => {
-    const { authedUser } = getState();
+    const { auth } = getState();
     return saveQuestionAnswer({
-      authedUser,
+      auth,
       qid,
       answer
     })
       .then(() => {
-        dispatch(questionAnswer({authedUser, qid, answer}));
-        dispatch(userAnswer({authedUser, qid, answer}));
+        dispatch(questionAnswer({auth, qid, answer}));
+        dispatch(userAnswer({auth, qid, answer}));
       })
   }
 }
 
 export function handleSaveQuestion (optionOneText, optionTwoText) {
   return (dispatch, getState) => {
-    const { authedUser } = getState();
+    const { auth } = getState();
 
     return saveQuestion({
-      author: authedUser,
+      author: auth,
       optionOneText,
       optionTwoText
     })

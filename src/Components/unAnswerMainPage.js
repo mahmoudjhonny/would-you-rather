@@ -33,5 +33,5 @@ class unAnsweredQ extends Component{
         </div>
     )}
 }
-
-export default unAnsweredQ
+   
+export default(unAnsweredQ)

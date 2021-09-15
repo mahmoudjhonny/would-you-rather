@@ -7,22 +7,24 @@ const ProtectedRoute = ({
    ...rest 
   }) => {
   return (
-    <Route {...rest} render={(props) => {
+    <Route {...rest} render={props => {
       return (
-        rest.authedUser
+        rest.auth
         ? <Component {...props} />
         : <Redirect to={{
             pathname: '/',
-            state: { from: props.location }
+            state: { 
+              from: props.location 
+            }
           }} />
       )}
     } />
   );
 }
 
-function mapStateToProps( { loginReducer }) {
+function mapStateToProps( { auth }) {
     return {
-        loginReducer
+        auth
     }
 }
 

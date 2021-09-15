@@ -5,6 +5,7 @@ import Homeheader from "./Components/homeHeader"
 import NotFound from './Components/NotFoundPage'
 import HomePage from './Components/homeBody'
 import Footer from './Components/footer'
+import QuestionPage from './Components/QuestionPage'
 import LeaderBoard from './Components/LeaderBoard'
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 import { handleInitialData } from './Store/Actions/index'
@@ -32,6 +33,7 @@ class App extends Component{
 									<Route path="/" exact component={Login}/> 
                   <ProtectedRoute path="/newpoll" exact component={NewPoll} />
                   <ProtectedRoute path="/leaderboard" exact component={LeaderBoard} />
+                  <ProtectedRoute path='/questions/:id' component={QuestionPage} />
                   <ProtectedRoute path="/home" exact component={HomePage} />
                   <Route path="/*" component={NotFound} />
 								</Switch>

@@ -4,25 +4,25 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 
-export const addQuestion = (q) => {
+export const addQuestion = (questions) => {
     return {
         type: SAVE_QUESTION,
-        q
+        questions
     }
 }
 
-export const questionAnswer = (user, qid, ans) => {
+export const questionAnswer = (info) => {
     return {
         type: SAVE_QUESTION_ANSWER,
-        user,
-        qid,
-        ans
+        authedUser: info.authedUser,
+        qid: info.qid,
+        answer: info.answer
     }
 }
 
-export const receiveQuestions = (q) => {
+export const receiveQuestions = (question) => {
     return {
         type: RECEIVE_QUESTIONS,
-        q
+        question
     }
 }
