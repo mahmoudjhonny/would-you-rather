@@ -1,6 +1,6 @@
 import { getInitialData, saveQuestionAnswer, saveQuestion } from '../../API/DataApi';
 import { receiveUsers, userAnswer, userQuestion } from '../Actions/Users';
-import { receiveQuestions, questionAnswer, addQuestion } from '../Actions/Question';
+import { receiveQuestions, questionAnswer, addQuestion } from '../Actions/questions';
 
 export function handleInitialData () {
   return (dispatch) => {

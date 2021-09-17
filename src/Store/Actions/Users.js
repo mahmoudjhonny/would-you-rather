@@ -1,4 +1,4 @@
-// import {RECEIVE_USERS , SAVE_Q , SAVE_Q_ANS} from './Types'
+// import {RECEIVE_USERS , SAVE_USER_ANSWER , SAVE_USER_QUESTION} from './Types'
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const SAVE_USER_ANSWER = 'SAVE_USER_ANSWER';
@@ -11,18 +11,18 @@ export const receiveUsers = (users) => {
     }
 }
 
-export const userAnswer = (user, qid, ans) => {
+export const userAnswer = (user, qid, answer) => {
     return {
         type: SAVE_USER_ANSWER,
         user,
         qid,
-        ans
+        answer
     }
 }
 
-export const userQuestion = (q) => {
+export const userQuestion = (question) => {
     return {
         type: SAVE_USER_QUESTION,
-        q
+        question
     }
 }

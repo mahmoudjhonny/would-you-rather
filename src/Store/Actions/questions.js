@@ -4,10 +4,10 @@ export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
 export const SAVE_QUESTION = 'SAVE_QUESTION';
 
-export const addQuestion = (questions) => {
+export const addQuestion = (question) => {
     return {
         type: SAVE_QUESTION,
-        questions
+        question
     }
 }
 
@@ -20,9 +20,9 @@ export const questionAnswer = (info) => {
     }
 }
 
-export const receiveQuestions = (question) => {
+export const receiveQuestions = (questions) => {
     return {
         type: RECEIVE_QUESTIONS,
-        question
+        questions
     }
 }
