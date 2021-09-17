@@ -1,8 +1,4 @@
-// import { SAVE_Q_ANS , SAVE_Q , RECEIVE_Q } from "./Types";
-
-export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
-export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
-export const SAVE_QUESTION = 'SAVE_QUESTION';
+import { RECEIVE_QUESTIONS , SAVE_QUESTION_ANSWER , SAVE_QUESTION } from "./Types";
 
 export const addQuestion = (question) => {
     return {
@@ -14,7 +10,7 @@ export const addQuestion = (question) => {
 export const questionAnswer = (info) => {
     return {
         type: SAVE_QUESTION_ANSWER,
-        authedUser: info.authedUser,
+        auth: info.auth,
         qid: info.qid,
         answer: info.answer
     }

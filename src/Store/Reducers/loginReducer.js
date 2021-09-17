@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT } from '../Actions/authedUser'
+import { LOGIN, LOGOUT } from '../Actions/Types'
 
 const authedUserReducer = (state = null , action) => {
     switch(action.type) {

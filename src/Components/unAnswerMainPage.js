@@ -38,13 +38,13 @@ class unAnsweredQ extends Component{
 //     }
 // }
 
-const mapStateToProps = ({auth, users, questions}, { id }) => {
-    const question = questions[id];
+const mapStateToProps = ({auth, questions}, { id }) => {
+    const question = questions['id'];
     // const author = question ? users[question.author] : ''
   
     return {
         auth,
-        question,
+        questions,
         // author
     }
 }

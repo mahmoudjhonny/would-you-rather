@@ -1,4 +1,4 @@
-import { RECEIVE_QUESTIONS, SAVE_QUESTION_ANSWER, SAVE_QUESTION } from '../Actions/questions';
+import { RECEIVE_QUESTIONS, SAVE_QUESTION_ANSWER, SAVE_QUESTION } from '../Actions/Types';
 
 const questionsReducer = (state = {} , action) => {
     switch(action.type) {
@@ -23,7 +23,7 @@ const questionsReducer = (state = {} , action) => {
                 ...state[action.qid],
                 [action.answer]: {
                     ...state[action.qid][action.answer],
-                votes: state[action.qid][action.answer].votes.concat([action.authedUser])
+                votes: state[action.qid][action.answer].votes.concat([action.auth])
           }
                 }
             }

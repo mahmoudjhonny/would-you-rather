@@ -1,7 +1,4 @@
-// import { LOGIN , LOGOUT } from './Types'
-
-export const LOGIN = 'LOGIN'
-export const LOGOUT = 'LOGOUT'
+import { LOGIN , LOGOUT } from './Types'
 
 export const loginUser = (id) => {
     return {

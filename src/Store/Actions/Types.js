@@ -1,6 +1,8 @@
-// export const LOGIN = 'LOGIN'
-// export const LOGOUT = 'LOGOUT'
-// export const SAVE_Q_ANS = "SAVE_Q_ANS"
-// export const RECEIVE_Q = "RECEIVE_Q"
-// export const SAVE_Q = "SAVE_Q"
-// export const RECEIVE_USERS = "RECEIVE_USERS"
+export const LOGIN = 'LOGIN'
+export const LOGOUT = 'LOGOUT'
+export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
+export const SAVE_QUESTION_ANSWER = 'SAVE_QUESTION_ANSWER';
+export const SAVE_QUESTION = 'SAVE_QUESTION';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const SAVE_USER_ANSWER = 'SAVE_USER_ANSWER';
+export const SAVE_USER_QUESTION = 'SAVE_USER_QUESTION';
