@@ -1,7 +1,7 @@
 import React , { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { loginUser } from '../Store/Actions/authedUser'
+import { logOutUser } from '../Store/Actions/authedUser'
 
     var colors = {
         "nav-color" : "#e3f2fd"
@@ -10,7 +10,7 @@ import { loginUser } from '../Store/Actions/authedUser'
 class homeHeader extends Component {
 
     handleLogOut = () => {
-        this.props.dispatch(loginUser(null))
+        this.props.dispatch(logOutUser())
         document.getElementById('logOut').innerHTML = <Link to= '/'></Link>
     }
 
