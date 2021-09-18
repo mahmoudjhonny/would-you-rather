@@ -1,6 +1,6 @@
 import { RECEIVE_QUESTIONS , SAVE_QUESTION_ANSWER , SAVE_QUESTION } from "./Types";
 
-export const addQuestion = (question) => {
+export const addQuestion = ({question}) => {
     return {
         type: SAVE_QUESTION,
         question

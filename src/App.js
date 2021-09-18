@@ -5,7 +5,7 @@ import Homeheader from "./Components/homeHeader"
 import NotFound from './Components/NotFoundPage'
 import HomePage from './Components/homeBody'
 import Footer from './Components/footer'
-import QuestionPage from './Components/QuestionPage'
+import QuestionPage from './Components/QuestionDetails'
 import LeaderBoard from './Components/LeaderBoard'
 import ProtectedRoute from './ProtectedRoute/ProtectedRoute'
 import { handleInitialData } from './Store/Actions/index'
