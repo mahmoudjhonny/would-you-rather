@@ -20,7 +20,7 @@ class homeBody extends Component {
     render() {
 
         const {answer , unAnswer} = this.props
-        const question = this.state.amount === 0 ? answer : unAnswer
+        const question = this.state.amount === 0 ? unAnswer : answer
         console.log(this.props)
 
     return (
