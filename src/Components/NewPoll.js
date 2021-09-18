@@ -8,7 +8,7 @@ class NewPoll extends Component{
     state = {
         optionOne: '',
         optionTwo: '',
-        toHome: false
+        toMainPage: false
     }
 
     handleChange = name => e => {
@@ -25,16 +25,16 @@ class NewPoll extends Component{
         this.setState(() => ({
           optionOne: '',
           optionTwo: '',
-          toHome: true
+          toMainPage: true
         }));
       }
     
 
     render() {
 
-        const { optionOne, optionTwo, toHome } = this.state;
+        const { optionOne, optionTwo, toMainPage } = this.state;
 
-    if (toHome) {
+    if (toMainPage) {
       return <Redirect to={{ pathname: '/home' }} />
     }
 
@@ -49,7 +49,7 @@ class NewPoll extends Component{
                     className="form-control" 
                     id="formGroupExampleInput" 
                     value={optionOne}
-					onChange={this.handleChange('optionOne')} />
+					          onChange={this.handleChange('optionOne')} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="formGroupExampleInput2">Second Option</label>
@@ -58,7 +58,7 @@ class NewPoll extends Component{
                     className="form-control" 
                     id="formGroupExampleInput2" 
                     value={optionTwo}
-					onChange={this.handleChange('optionTwo')} />
+					          onChange={this.handleChange('optionTwo')} />
                 </div>
                 <br />
                 <button 

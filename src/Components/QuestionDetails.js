@@ -20,15 +20,15 @@ class QuestionDetails extends Component{
         dispatch(handleAddAnswer({ 
            auth,
            qid: id,
-           answers: answerSelect 
+           answer: answerSelect 
         }))
     }
 
-    handleSelectedAnswer = (answers) => {
+    handleSelectedAnswer = (answer) => {
         this.setState(PreviousState => {
             return {
                 ...PreviousState,
-                answerSelect: answers
+                answerSelect: answer
             }
         })
     }
@@ -73,7 +73,7 @@ class QuestionDetails extends Component{
                             </div>
                             {(answerForAuth) ? (
                             <div>
-                            <img src='https://cdn-icons-png.flaticon.com/512/1533/1533908.png' alt = {answerForAuth}/>
+                            <img src='https://cdn-icons-png.flaticon.com/512/1533/1533908.png' style={{width: 45}} alt = {answerForAuth}/>
                             <h4>Your Vote is : {answerForAuth}</h4>
                             </div>
                             ) : null}
