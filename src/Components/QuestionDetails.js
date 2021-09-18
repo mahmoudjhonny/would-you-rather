@@ -1,5 +1,5 @@
 import React , { Component } from 'react'
-import { handleAnswer } from '../Store/Actions'
+import { handleAddAnswer } from '../Store/Actions'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
@@ -12,19 +12,20 @@ class QuestionDetails extends Component{
         e.preventDefault()
 
         const { answerSelect } = this.state
-        const {dispatch, id} = this.props
+        const {dispatch, id, auth} = this.props
 
-        dispatch(handleAnswer({
+        dispatch(handleAddAnswer({ 
+           auth,
            qid: id,
-           answer: answerSelect 
+           answers: answerSelect 
         }))
     }
 
-    handleSelectedAnswer = (answer) => {
-        this.state(PreviousState => {
+    handleSelectedAnswer = (answers) => {
+        this.setState(PreviousState => {
             return {
                 ...PreviousState,
-                answerSelect: answer
+                answerSelect: answers
             }
         })
     }
@@ -34,6 +35,7 @@ class QuestionDetails extends Component{
         const {q, authorName, answered, voteOfOptionOne, voteOfOptionTwo, totalVotes, percentageOfOptionOne, percentageOfOptionTwo, answerForAuth} = this.props
         const { answerSelect } = this.state
 
+        console.log(answerSelect)
         if(!q){
             return <Redirect to="/*" />   
         }
@@ -41,9 +43,57 @@ class QuestionDetails extends Component{
         
         
     return (
-        <div>
+        <div>                   
+                    {answered ? (
+                        <div className="row gap-3 ms-2 w-100">
+                        <div className="p-2 bg-light border">
+                            <div className="col-md-2">
+                                <img src={`${authorName.avatarURL}`} className="img-fluid rounded-start w-50" alt="..." />
+                                    <br />
+                                <h6 className="d-inline">Asked by : {`${authorName.name}`}</h6>
+                            </div>
+                        <div className="col-md-8">
+                        <div className="card-body">
+                            <h5 className="card-title">Would you rather</h5>
+                            <div className="custom-control custom-radio m-3">
+                                <input type="radio" id="customRadio1" name="customRadio" className="custom-control-input" />
+                                <label className="custom-control-label" htmlFor="customRadio1" onClick= {() => this.handleSelectedAnswer('optionOne')}> &emsp;{q.optionOne.text}</label>
+                            </div>
+                            <div className="custom-control custom-radio m-3">
+                                <input type="radio" id="customRadio2" name="customRadio" className="custom-control-input" />
+                                <label className="custom-control-label" htmlFor="customRadio2" onClick= {() => this.handleSelectedAnswer('optionTwo')}> &emsp;Or {q.optionTwo.text}</label>
+                            </div>
+                            <button className={answerSelect ?  'btn btn-primary m-3' : 'disabled'} type="button" onClick={(e) => {this.saveAnswerQuestion(e)}}>Submit</button>
+                        </div>
+                    </div>
+                    </div>
+                    </div>
+                    ): (
+                        // <div className="question-body">
+                            {/* <div className="would-you">Results: </div>
+                            <div className={answered === 'optionOne' ? 'option-container selected': 'option-container'}>
+                                <div className="option-one">{q.optionOne.text}</div>
+
+                                <div className="poll-container">
+                                    <div>{voteOfOptionOne} out of {totalVotes} votes</div>
+                                    <div>Percentage votes: {percentageOfOptionOne}%</div>
+                                </div>
+                                <div className="your-vote">Your pick</div>
+                            </div>
+
+                            <div className={answered === 'optionTwo' ? 'option-container selected': 'option-container'}>
+                                <div className="option-two">{q.optionTwo.text}</div>
+
+                                <div className="poll-container">
+                                    <div>{voteOfOptionTwo} out of {totalVotes} votes</div>
+                                    <div>Percentage votes: {percentageOfOptionTwo}%</div>
+                                </div>
+                                <div className="your-vote">Your pick</div>
+                            </div>
+                        </div> */}
+                    )}
+                </div>
             
-        </div>
     )}
 }
 

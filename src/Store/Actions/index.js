@@ -42,3 +42,15 @@ export function handleSaveQuestion (optionOneText, optionTwoText) {
       })
   }
 }
+
+export function handleAddAnswer(info) {
+  return (dispatch) => {
+      //assuming answer gets updated correctly
+      dispatch(questionAnswer(info))
+      return saveQuestionAnswer(info)
+          .then(() => console.log('recorded answer'))
+          .catch( (error) => {
+              console.log('There was a problem saving question.');
+          })
+  }
+}
