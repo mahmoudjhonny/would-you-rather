@@ -8,7 +8,7 @@ In the "Would-You-Rather?" Project, you will play to answer the avalible with [O
 ## How to Run:
 1. Download or Run git clone [https://github.com/mahmoudjhonny/would-you-rather.git] to clone this repository.
 2. Install the depencies with => npm install 
-                              => yarn start
+                              Or => yarn start
 3. start the development server with => npm start
 4. App can view in the browser on => http://localhost:3000
 
