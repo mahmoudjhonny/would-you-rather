@@ -32,7 +32,7 @@ class homeHeader extends Component {
                                 <Link to = "/home" className="nav-link active" aria-current="page">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to = "/newpoll" className="nav-link">New Poll</Link>
+                                <Link to = "/add" className="nav-link">New Poll</Link>
                             </li>
                             <li className="nav-item">
                                 <Link to="/leaderboard" className="nav-link">Leader Board</Link>

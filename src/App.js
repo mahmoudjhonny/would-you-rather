@@ -27,7 +27,7 @@ class App extends Component{
 							<div className="main-content"> 
 								<Switch>
 									<Route path="/" exact component={Login}/> 
-                  <ProtectedRoute path="/newpoll" exact component={NewPoll} />
+                  <ProtectedRoute path="/add" exact component={NewPoll} />
                   <ProtectedRoute path="/leaderboard" exact component={LeaderBoard} />
                   <ProtectedRoute path='/questions/:id' component={QuestionPage} />
                   <ProtectedRoute path="/home" exact component={HomePage} />
