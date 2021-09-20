@@ -1,18 +1,18 @@
-import { RECEIVE_USERS, SAVE_USER_ANSWER, SAVE_USER_QUESTION } from '../Actions/Types';
+import { RECEIVE_USERS, ADD_QUESTION, ANSWER_QUESTION } from '../Actions/Types';
 
 const users = (state = {}, action) => {
     switch(action.type) {
-        case SAVE_USER_QUESTION: {
+        case ADD_QUESTION: {
             return {
                 ...state,
-                [action.question.author]: {
-                    ...state[action.question.author],
-                    questions: state[action.question.author].questions.concat([action.question.id])
+                [action.author]: {
+                    ...state[action.author],
+                    questions: state[action.author].questions.concat([action.id])
                 }
             }
         }
 
-        case SAVE_USER_ANSWER: {
+        case ANSWER_QUESTION: {
             return{
                 ...state,
                 [action.auth]: {

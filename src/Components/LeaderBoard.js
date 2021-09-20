@@ -21,7 +21,7 @@ class LeaderBoard extends Component {
             </thead>
             
             {ArraySorting.map((leader) => (
-            <tbody>
+            <tbody key={leader.id}>
                 <tr>
                     <td>
                         <img src ={leader.avatarURL} alt={leader.id} style={{width: 50, height:50}}/>

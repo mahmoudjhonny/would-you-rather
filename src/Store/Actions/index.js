@@ -1,6 +1,6 @@
-import { getInitialData, saveQuestionAnswer, saveQuestion } from '../../API/DataApi';
-import { receiveUsers, userAnswer, userQuestion } from '../Actions/Users';
-import { receiveQuestions, questionAnswer, addQuestion } from '../Actions/questions';
+import { getInitialData, saveQuestion, saveQuestionAnswer } from '../../API/DataApi';
+import { receiveUsers } from '../Actions/Users';
+import { receiveQuestions, addQuestion, addAnswer } from '../Actions/questions';
 
 export function handleInitialData () {
   return (dispatch) => {
@@ -12,41 +12,29 @@ export function handleInitialData () {
   }
 }
 
-export function handleAnswer (qid, answer) {
+export function handleAddQuestion(optionOneText, optionTwoText) {
   return (dispatch, getState) => {
-    const { auth } = getState();
-    return saveQuestionAnswer({
-      auth,
-      qid,
-      answer
-    })
-      .then(() => {
-        dispatch(questionAnswer({auth, qid, answer}));
-        dispatch(userAnswer({auth, qid, answer}));
-      })
-  }
-}
+    const { auth } = getState()
 
-export function handleSaveQuestion (optionOneText, optionTwoText) {
-  return (dispatch, getState) => {
-    const { auth } = getState();
-
-    return saveQuestion({
-      author: auth,
+    const questionInfo = {
       optionOneText,
-      optionTwoText
+      optionTwoText,
+      author: auth
+    }
+
+    return saveQuestion(questionInfo).then((question) => {
+      console.log('Created Question ', question)
+      dispatch(addQuestion(question))
+    }).catch((error) => {
+      console.log('There is a problem')
     })
-      .then((question) => {
-        dispatch(addQuestion(question));
-        dispatch(userQuestion(question));
-      })
   }
 }
 
 export function handleAddAnswer(info) {
   return (dispatch) => {
       //assuming answer gets updated correctly
-      dispatch(questionAnswer(info))
+      dispatch(addAnswer(info))
       return saveQuestionAnswer(info)
           .then(() => console.log('recorded answer'))
           .catch( (error) => {

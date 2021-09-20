@@ -1,30 +1,33 @@
 import React, { Component } from 'react'
-import { handleSaveQuestion } from '../Store/Actions/index'
+import { handleAddQuestion } from '../Store/Actions/index'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class NewPoll extends Component{
 
     state = {
-        optionOne: '',
-        optionTwo: '',
+        optionOneText: '',
+        optionTwoText: '',
         toMainPage: false
     }
 
-    handleChange = name => e => {
-        this.setState({
-          [name]: e.target.value,
-        });
-      };
+    handleInputChange = (event, type) => {
+      const value = event.target.value;
+  
+      this.setState((state) => {
+        return type === 'option1' ? {...state, optionOneText: value} : {...state, optionTwoText: value}
+      });
+    }
+  
 
       handleSubmit = (e) => {
         e.preventDefault();
-    
-        const { optionOne, optionTwo } = this.state;
-        this.props.dispatch(handleSaveQuestion(optionOne, optionTwo));
+        const { dispatch } = this.props
+        const { optionOneText, optionTwoText } = this.state;
+        dispatch(handleAddQuestion(optionOneText, optionTwoText));
         this.setState(() => ({
-          optionOne: '',
-          optionTwo: '',
+          optionOneText: '',
+          optionTwoText: '',
           toMainPage: true
         }));
       }
@@ -32,7 +35,7 @@ class NewPoll extends Component{
 
     render() {
 
-        const { optionOne, optionTwo, toMainPage } = this.state;
+        const { toMainPage, optionOneText, optionTwoText } = this.state;
 
     if (toMainPage) {
       return <Redirect to={{ pathname: '/home' }} />
@@ -45,27 +48,30 @@ class NewPoll extends Component{
                 <div className="form-group">
                     <label htmlFor="formGroupExampleInput">First Option</label>
                     <input 
+                    name = "optionOneText"
                     type="text" 
+                    placeholder= "Enter Option One Text"
                     className="form-control" 
                     id="formGroupExampleInput" 
-                    value={optionOne}
-					          onChange={this.handleChange('optionOne')} />
+                    value={optionOneText}
+					          onChange={(event) => this.handleInputChange(event, 'option1')} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="formGroupExampleInput2">Second Option</label>
                     <input 
+                    name = "optionTwoText"
                     type="text" 
+                    placeholder= "Enter Option Two Text"
                     className="form-control" 
                     id="formGroupExampleInput2" 
-                    value={optionTwo}
-					          onChange={this.handleChange('optionTwo')} />
+                    value={optionTwoText}
+					          onChange={(event) => this.handleInputChange(event, 'option2')} />
                 </div>
                 <br />
                 <button 
                 className="btn btn-primary"
                 type="submit"
-                onClick={this.handleSubmit}
-                disabled={optionOne === '' || optionTwo === ''}
+                disabled={optionOneText === '' || optionTwoText === ''}
                 >Submit Question</button>
             </form>
         </div>

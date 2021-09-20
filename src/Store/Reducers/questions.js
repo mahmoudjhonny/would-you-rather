@@ -1,11 +1,11 @@
-import { RECEIVE_QUESTIONS, SAVE_QUESTION_ANSWER, SAVE_QUESTION } from '../Actions/Types';
+import { RECEIVE_QUESTIONS, ANSWER_QUESTION, ADD_QUESTION } from '../Actions/Types';
 
 const questionsReducer = (state = {} , action) => {
     switch(action.type) {
-        case SAVE_QUESTION: {
+        case ADD_QUESTION: {
             return{
                 ...state,
-                [action.question.id]: action.question
+                [action.id]: action
             }
         }
 
@@ -16,7 +16,7 @@ const questionsReducer = (state = {} , action) => {
             }
         }
 
-        case SAVE_QUESTION_ANSWER: {
+        case ANSWER_QUESTION: {
             return{
                 ...state,
                 [action.qid]: {

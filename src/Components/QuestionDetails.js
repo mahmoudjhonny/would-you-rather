@@ -1,5 +1,5 @@
 import React , { Component } from 'react'
-import { handleAddAnswer } from '../Store/Actions'
+import { handleAddAnswer } from '../Store/Actions/index'
 import { connect } from 'react-redux'
 import { ProgressBar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -39,75 +39,74 @@ class QuestionDetails extends Component{
         const { answerSelect } = this.state
 
         if(!q){
-            return <Redirect to="/*" />   
+            return <Redirect to="/not" />   
         }
         console.log(this.props)
 
         
     return (
-        <div>                   
-                    {answered ? (
-                        <div className="row gap-3 ms-2 w-100">
-                        <div className="p-2 bg-light border">
-                            <div className="col-md-2">
-                                <img src={`${authorName.avatarURL}`} className="img-fluid rounded-start w-50" alt="..." />
-                                    <br />
-                                <h6 className="d-inline">Asked by : {`${authorName.name}`}</h6>
-                            </div>
-                        <div className="col-md-8">
-                        <div className="card-body">
-                        <h4 className="card-title">Results: </h4>
-                            <h5 className="card-title">Would you rather</h5>
-                            <div className="custom-control custom-radio m-3">
-                                <li>Option One : {q.optionOne.text}</li>
-                                    <ProgressBar now={percentageOfOptionOne} />
-                                    <div id='you'></div>
-                                <h5>{voteOfOptionOne} out of {totalVotes} votes</h5>
-                                <h5>Percentage votes: {percentageOfOptionOne} %</h5>
-                            </div>
-                            <div className="custom-control custom-radio m-3">
-                            <li>Option Two : {q.optionTwo.text}</li>
-                                <ProgressBar now={percentageOfOptionTwo} />
-                                <h5>{voteOfOptionTwo} out of {totalVotes} votes</h5>
-                                <h5>Percentage votes: {percentageOfOptionTwo} %</h5>
-                            </div>
-                            {(answerForAuth) ? (
-                            <div>
-                            <img src='https://cdn-icons-png.flaticon.com/512/1533/1533908.png' style={{width: 45}} alt = {answerForAuth}/>
-                            <h4>Your Vote is : {answerForAuth}</h4>
-                            </div>
-                            ) : null}
-                            <Link to='/home' className='btn btn-primary m-3'type="button">Back</Link>
+        <div>    
+            {answered ? (
+                <div className="row gap-3 ms-2 w-100">
+                <div className="p-2 bg-light border">
+                    <div className="col-md-2">
+                        <img src={`${authorName.avatarURL}`} className="img-fluid rounded-start w-50" alt="..." />
+                            <br />
+                        <h6 className="d-inline">&emsp;{`${authorName.name}`} Asked By: </h6>
+                    </div>
+                <div className="col-md-8">
+                <div className="card-body">
+                <h4 className="card-title">Results: </h4>
+                    <h5 className="card-title">Would you rather</h5>
+                    <div className="custom-control custom-radio m-3">
+                        <div className={answerForAuth === 'optionOne' ? 'p-3 mb-2 bg-danger text-white' : 'p-3 mb-2 bg-light text-dark'}>
+                            <li>Option One : {q.optionOne.text}</li>
+                                <ProgressBar now={percentageOfOptionOne} />
+                            <h5>{voteOfOptionOne} out of {totalVotes} votes</h5>
+                            <h5>Percentage votes: {percentageOfOptionOne} %</h5>
                         </div>
                     </div>
+                    <div className="custom-control custom-radio m-3 optionTwo">
+                    <div className={answerForAuth === 'optionTwo' ? 'p-3 mb-2 bg-danger text-white' : 'p-3 mb-2 bg-light text-dark'}>
+                        <li>Option Two : {q.optionTwo.text}</li>
+                            <ProgressBar now={percentageOfOptionTwo} />
+                            <h5>{voteOfOptionTwo} out of {totalVotes} votes</h5>
+                            <h5>Percentage votes: {percentageOfOptionTwo} %</h5>
                     </div>
                     </div>
-                    ): (
-                        <div className="row gap-3 ms-2 w-100">
-                        <div className="p-2 bg-light border">
-                            <div className="col-md-2">
-                                <img src={`${authorName.avatarURL}`} className="img-fluid rounded-start w-50" alt="..." />
-                                    <br />
-                                <h6 className="d-inline">Asked by : {`${authorName.name}`}</h6>
-                            </div>
-                        <div className="col-md-8">
-                        <div className="card-body">
-                            <h5 className="card-title">Would you rather</h5>
-                            <div className="custom-control custom-radio m-3">
-                                <input type="radio" id="customRadio1" name="customRadio" className="custom-control-input" />
-                                <label className="custom-control-label" htmlFor="customRadio1" onClick= {() => this.handleSelectedAnswer('optionOne')}> &emsp;{q.optionOne.text}</label>
-                            </div>
-                            <div className="custom-control custom-radio m-3">
-                                <input type="radio" id="customRadio2" name="customRadio" className="custom-control-input" />
-                                <label className="custom-control-label" htmlFor="customRadio2" onClick= {() => this.handleSelectedAnswer('optionTwo')}> &emsp;Or {q.optionTwo.text}</label>
-                            </div>
-                            <button className='btn btn-primary m-3' disabled = {!answerSelect} type="button" onClick={(e) => {this.saveAnswerQuestion(e)}}>Submit</button>
-                        </div>
-                    </div>
-                    </div>
-                    </div>
-                    )}
+                    
+                    <Link to='/home' className='btn btn-primary m-3'type="button">Back</Link>
                 </div>
+            </div>
+            </div>
+            </div>
+            ): (
+                <div className="row gap-3 ms-2 w-100">
+                <div className="p-2 bg-light border">
+                    <div className="col-md-2">
+                        <img src={`${authorName.avatarURL}`} className="img-fluid rounded-start w-50" alt="..." />
+                            <br />
+                        <h6 className="d-inline">&emsp; {`${authorName.name}`} Askes: </h6>
+                    </div>
+                <div className="col-md-8">
+                <div className="card-body">
+                    <h5 className="card-title">Would you rather</h5>
+                    <div className="custom-control custom-radio m-3">
+                        <input type="radio" id="customRadio1" name="customRadio" className="custom-control-input" />
+                        <label className="custom-control-label" htmlFor="customRadio1" onClick= {() => this.handleSelectedAnswer('optionOne')}> &emsp;{q.optionOne.text}</label>
+                    </div>
+                    <div>&emsp;&emsp;OR</div>
+                    <div className="custom-control custom-radio m-3">
+                        <input type="radio" id="customRadio2" name="customRadio" className="custom-control-input" />
+                        <label className="custom-control-label" htmlFor="customRadio2" onClick= {() => this.handleSelectedAnswer('optionTwo')}>&emsp; {q.optionTwo.text}</label>
+                    </div>
+                    <button className='btn btn-primary m-3' disabled = {!answerSelect} type="button" onClick={(e) => {this.saveAnswerQuestion(e)}}>Submit</button>
+                </div>
+            </div>
+            </div>
+            </div>
+            )}
+        </div>
             
     )}
 }
