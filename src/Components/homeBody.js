@@ -1,10 +1,8 @@
 import React , {Component } from 'react'
 import Question from './Question';
 // Material UI
-import { theme } from '../theme';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import { MuiThemeProvider } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 
 class homeBody extends Component {
@@ -21,24 +19,21 @@ class homeBody extends Component {
 
         const {answer , unAnswer} = this.props
         const question = this.state.amount === 0 ? unAnswer : answer
-        console.log(this.props)
 
     return (
         <div className='home'>
-        <MuiThemeProvider theme={theme}>
           <div className='tabs-container'>
-            <Tabs
-              value={this.state.amount}
-              onChange={this.handleChangeState}
-              indicatorColor="primary"
-              textColor="primary"
-              centered
-            >
-              <Tab label="Unanswered" />
-              <Tab label="Answered" />
+            <Tabs value={this.state.amount}
+                  onChange={this.handleChangeState}
+                  indicatorColor="primary"
+                  textColor="primary"
+                  centered>
+              
+              <Tab title="UnAnswerd" label="Unanswered" />
+              <Tab title="Answered" label="Answered"/>
+
             </Tabs>
           </div>
-        </MuiThemeProvider>
         <div className='questions-container'>
           {question.length === 0 && <p>No questions here!</p>}
           <ul>

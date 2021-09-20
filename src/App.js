@@ -17,12 +17,8 @@ class App extends Component{
   componentDidMount() {
     this.props.dispatch(handleInitialData())
   }
-
-
+  
   render() {  
-    
-    console.log(this.props)
-
   return (
     <Router>
       <Fragment>

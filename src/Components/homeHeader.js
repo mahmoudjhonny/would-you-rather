@@ -17,7 +17,6 @@ class homeHeader extends Component {
     render(){
 
         const { nameOfUser , userImage, auth } = this.props
-        console.log(this.props)
 
     return (
         <div>

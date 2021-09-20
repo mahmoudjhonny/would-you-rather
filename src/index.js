@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { createStore , applyMiddleware } from 'redux';
@@ -6,14 +6,18 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import reducer from './Store/Reducers/CompineReducers'
 import { Provider } from 'react-redux';
+import { composeWithDevTools } from "redux-devtools-extension"
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(reducer , applyMiddleware(thunk , logger))
+const store = createStore(reducer , composeWithDevTools(applyMiddleware(thunk , logger)))
 
 ReactDOM.render(
-<Provider store = {store}><App />
-  </Provider>,
+  <StrictMode>
+    <Provider store = {store}>
+      <App />
+    </Provider>
+  </StrictMode>,
   document.getElementById('root')
 );
 

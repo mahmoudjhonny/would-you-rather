@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 class QuestionPage extends Component {
+
     render(){
-
-    console.log(this.props)
-
-    const { author , avatarURL, optionPreview, id} = this.props;
+        
+    const { author 
+        , avatarURL, 
+        optionPreview, 
+        id} = this.props;
 
         return (
             <div className="row gap-3 ms-2 w-75">

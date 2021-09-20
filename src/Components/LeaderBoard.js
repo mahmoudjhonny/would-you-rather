@@ -6,8 +6,8 @@ class LeaderBoard extends Component {
     render(){
         const { users } = this.props
         const ArraySorting = users.sort((first , second) => second.totalScore - first.totalScore)
-        console.log(this.props)
-    return (
+
+        return (
     <div>  
         <table className="table">
             <thead>

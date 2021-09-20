@@ -41,8 +41,6 @@ class QuestionDetails extends Component{
         if(!q){
             return <Redirect to="/not" />   
         }
-        console.log(this.props)
-
         
     return (
         <div>    
@@ -119,8 +117,8 @@ const mapStateToProps = ({auth, users, questions}, { match }) => {
     const voteOfOptionOne = (q && q.optionOne.votes) ? q.optionOne.votes.length : 0
     const voteOfOptionTwo = (q && q.optionTwo.votes) ? q.optionTwo.votes.length : 0
     const totalVotes = voteOfOptionOne + voteOfOptionTwo
-    const percentageOfOptionOne = ((voteOfOptionOne / totalVotes) * 100)
-    const percentageOfOptionTwo = ((voteOfOptionTwo / totalVotes) * 100)
+    const percentageOfOptionOne = ((voteOfOptionOne / totalVotes) * 100).toFixed(1)
+    const percentageOfOptionTwo = ((voteOfOptionTwo / totalVotes) * 100).toFixed(1)
     
     const answerForAuth = users[auth].answers[id]
 
